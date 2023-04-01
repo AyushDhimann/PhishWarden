@@ -118,7 +118,7 @@ def get_blacklisted_words_count(url):
     #
     # except Exception:
     #     blacklisted_words = ''
-    return len(blacklisted_words)
+    return len(get_blacklisted_words(url))
 
 
 # def get_blacklisted_words_ratio(url):
@@ -153,8 +153,8 @@ with open('../Dataset_Files/URLs.csv', mode='r') as csv_file:
     csv_reader = csv.reader(csv_file)
     reader = csv.reader(csv_file)
     for row in csv_reader:
-        url = row
-        output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
+        url = row[0]
+        output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url),  get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
 
 print(output_data)
 
