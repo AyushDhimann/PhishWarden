@@ -1,14 +1,15 @@
-# pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3
+# pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3 psutil
 
 from bs4 import BeautifulSoup
-import csv
+import concurrent.futures
 from datetime import datetime
 import dns.resolver
+import pandas as pd
+import psutil
 import requests
-import threading
 import time
+from tqdm import tqdm
 import ssl
-import subprocess
 import whois
 import urllib3
 
@@ -28,6 +29,13 @@ blacklisted_words=[]
 
 
 # Functions
+
+def print_memory_usage():
+    process = psutil.Process()
+    memory_info = process.memory_info()
+    print(f"Memory usage: {memory_info.rss / (1024*1024):.2f} MB")
+
+print_memory_usage()
 
 # Checks for the IP Address of the website
 def get_ip(url):
@@ -153,19 +161,36 @@ def get_iframes(url):
 # Record the start time
 start_time = time.perf_counter()
 
+def process_row(row):
+    url = row[0]
+    ip = get_ip(url)
+    iframes = get_iframes(url)
+    age = get_age(url)
+    ssl = get_ssl(url)
+    blacklisted_words = get_blacklisted_words(url)
+    nameserver = get_nameserver(url)
+    blacklisted_words_count = get_blacklisted_words_count(url)
+    status_code = get_status_code(url)
+    length = get_length(url)
+    return [url, ip, iframes, age, ssl, iframes, blacklisted_words, nameserver, blacklisted_words_count, status_code, length]
+
+# read the input CSV file using pandas
+df = pd.read_csv('../Dataset_Files/URLs.csv')
+
+# process the rows in parallel using a ThreadPoolExecutor
 output_data = []
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    futures = []
+    for index, row in tqdm(df.iterrows(), total=len(df)):
+        future = executor.submit(process_row, row)
+        futures.append(future)
+    for future in concurrent.futures.as_completed(futures):
+        result = future.result()
+        output_data.append(result)
 
-with open('../Dataset_Files/URLs.csv', mode='r') as csv_file:
-    csv_reader = csv.reader(csv_file)
-    for row in csv_reader:
-        url = row[0]
-        output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
-        csv_file.close()
-
-print(output_data)
-
-        #print(url,get_ip(url))
-
+# write the output data to a CSV file using pandas
+df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
+df_output.to_csv('scraped.csv', index=False)
 
 # Record the end time
 end_time = time.perf_counter()
@@ -174,7 +199,4 @@ end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
 print(f"Time taken: {elapsed_time:.6f} seconds")
-
-with open('../Dataset_Files/Scraped.csv', mode='w') as csv_file:
-    csv_writer = csv.writer(csv_file)
-    csv_writer.writerows(output_data)
+print_memory_usage()
