@@ -24,6 +24,8 @@ blacklist = ['spam', 'scam', 'fraud', 'phishing', 'gift', 'surprise', 'real', 'l
              'finance', 'defi', 'yield', 'farming', 'staking', 'staking', 'pool', 'pooling', 'staking', 'staking',
              'staking', 'join', 'group', 'telegram', 'whatsapp', 'discord', 'discord nitro', 'antivirus']
 
+blacklisted_words=[]
+
 
 # Functions
 
@@ -68,8 +70,7 @@ def get_age(url):
 
 def get_nameserver(url):
     try:
-        domain = url  # [4:]
-        answers = dns.resolver.resolve(domain, 'NS')
+        answers = dns.resolver.resolve(url, 'NS')
         nsdata = []
         for rdata in answers:
             data = rdata.to_text()
@@ -110,13 +111,13 @@ def get_blacklisted_words(url):
 
 
 def get_blacklisted_words_count(url):
-    try:
-        response = requests.get(url)
-        webpage_text = response.text
-        blacklisted_words = [word for word in blacklist if word in webpage_text]
-
-    except Exception:
-        blacklisted_words = ''
+    # try:
+    #     response = requests.get(url)
+    #     webpage_text = response.text
+    #     blacklisted_words = [word for word in blacklist if word in webpage_text]
+    #
+    # except Exception:
+    #     blacklisted_words = ''
     return len(blacklisted_words)
 
 
@@ -143,31 +144,28 @@ def get_iframes(url):
         iframes = '0'
     return iframes
 
+# Record the start time
+start_time = time.perf_counter()
+
+output_data = []
 
 with open('../Dataset_Files/URLs.csv', mode='r') as csv_file:
-    # # Create a new thread to process the URL
-    # thread = threading.Thread(target=process_url, args=(url,))
-    # threads.append(thread)
-    # # Start the thread
-    # thread.start()
     csv_reader = csv.reader(csv_file)
-    output_data = []
     reader = csv.reader(csv_file)
     for row in csv_reader:
         url = row
-        get_ip(url)
-        get_iframes(url)
-        get_age(url)
-        get_ssl(url)
-        get_iframes(url)
-        get_nameserver(url)
-        get_blacklisted_words(url)
-        get_blacklisted_words_count(url)
-        #get_blacklisted_words_ratio(url)
-        get_status_code(url)
-        get_length(url)
         output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
-        print([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
+
+print(output_data)
+
+
+# Record the end time
+end_time = time.perf_counter()
+
+# Calculate the elapsed time
+elapsed_time = end_time - start_time
+
+print(f"Time taken: {elapsed_time:.6f} seconds")
 
 with open('../Dataset_Files/Scraped.csv', mode='w') as csv_file:
     csv_writer = csv.writer(csv_file)
