@@ -144,17 +144,17 @@ def get_iframes(url):
     return iframes
 
 
-with open('input.csv', mode='r') as csv_file:
-    # Create a new thread to process the URL
-    thread = threading.Thread(target=process_url, args=(url,))
-    threads.append(thread)
-    # Start the thread
-    thread.start()
+with open('../Dataset_Files/URLs.csv', mode='r') as csv_file:
+    # # Create a new thread to process the URL
+    # thread = threading.Thread(target=process_url, args=(url,))
+    # threads.append(thread)
+    # # Start the thread
+    # thread.start()
     csv_reader = csv.reader(csv_file)
     output_data = []
     reader = csv.reader(csv_file)
     for row in csv_reader:
-        url = row[0]
+        url = row
         get_ip(url)
         get_iframes(url)
         get_age(url)
@@ -169,6 +169,6 @@ with open('input.csv', mode='r') as csv_file:
         output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
         print([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
 
-with open('optoutput.csv', mode='w') as csv_file:
+with open('../Dataset_Files/Scraped.csv', mode='w') as csv_file:
     csv_writer = csv.writer(csv_file)
     csv_writer.writerows(output_data)
