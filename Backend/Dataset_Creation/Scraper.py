@@ -29,12 +29,18 @@ blacklisted_words=[]
 
 # Functions
 
+# Checks for the IP Address of the website
 def get_ip(url):
     try:
         ip_address = requests.get(f'http://ip-api.com/json/{url}').json().get('query')
+        # If the ip address is IPv6, this loop recalls the function to get the IPv4
+        if len(ip_address) > 17:
+            return get_ip(url)
     except Exception:
         ip_address = ''
     return ip_address
+
+
 
 
 def get_length(url):
@@ -151,12 +157,14 @@ output_data = []
 
 with open('../Dataset_Files/URLs.csv', mode='r') as csv_file:
     csv_reader = csv.reader(csv_file)
-    reader = csv.reader(csv_file)
     for row in csv_reader:
-        url = row
+        url = row[0]
         output_data.append([url, get_ip(url), get_iframes(url), get_age(url), get_ssl(url), get_iframes(url), get_blacklisted_words(url), get_nameserver(url), get_blacklisted_words_count(url), get_status_code(url), get_length(url)])
+        csv_file.close()
 
 print(output_data)
+
+        #print(url,get_ip(url))
 
 
 # Record the end time
