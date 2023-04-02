@@ -9,8 +9,8 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     }
     var url = new URL(tab.url);
     var domainName = url.hostname;
-    var filename = domainName + ".txt";
-    var plainText = "Domain name: " + domainName + "\nEncrypted URL: ";
+    // var filename = domainName + ".txt";
+    var plainText = domainName;
 
     // Generate a custom key
     var customKey = "1234567890123456";
@@ -37,22 +37,46 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     // Convert the encrypted data to a base64-encoded string
     var base64Encrypted = btoa(String.fromCharCode.apply(null, encrypted));
 
-    // Create the request object and set the request method and URL
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://example.com/api/encrypt', true);
+    // // Create the request object and set the request method and URL
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('POST', 'https://example.com/api/encrypt', true);
+    //
+    // // Set the request headers
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    //
+    // // Set the request data
+    // var data = JSON.stringify({
+    //     encryptedData: base64Encrypted,
+    //     iv: iv,
+    //     key: key
+    // });
+    //
+    // // Send the request
+    // xhr.send(data);
 
-    // Set the request headers
-    xhr.setRequestHeader('Content-Type', 'application/json');
 
-    // Set the request data
-    var data = JSON.stringify({
-        encryptedData: base64Encrypted,
-        iv: iv,
-        key: key
+    var data = {
+    encryptedData: base64Encrypted,
+    iv: Array.from(iv),
+    key: Array.from(key)
+  };
+
+  try {
+    const response = await fetch('http://pawbox.me/api/encrypt', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     });
 
-    // Send the request
-    xhr.send(data);
+    // Parse the JSON response
+    const responseData = await response.json();
+
+    console.log(responseData);
+  } catch (error) {
+    console.error('Error:', error);
+  }
 
     // Update the content of the HTML elements with the encrypted URL and domain name
     document.getElementById("encrypted-url").textContent = base64Encrypted;

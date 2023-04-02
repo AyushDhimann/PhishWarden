@@ -1,5 +1,5 @@
 
-# # pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3 psutil
+# # pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3 psutil pandas pycryptodome flask
 # 
 # from bs4 import BeautifulSoup
 # import concurrent.futures

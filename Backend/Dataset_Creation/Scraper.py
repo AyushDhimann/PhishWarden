@@ -1,3 +1,5 @@
+# pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3 psutil pandas pycryptodome flask
+
 import pandas as pd
 import concurrent.futures
 import time
