@@ -1,3 +1,3 @@
 ### Dataset Files
 
-Folder where all the Filws required for the rest of the code is stored.
+Folder where all the Files required for the rest of the code is stored.
