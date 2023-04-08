@@ -8,7 +8,7 @@ from sklearn.compose import ColumnTransformer
 import joblib
 
 # Load the dataset
-data = pd.read_csv('Shuffled.csv')
+data = pd.read_csv('../Dataset_files/Shuffled.csv')
 
 # Separate the features and target variable
 X = data.iloc[:, :-1]
@@ -41,7 +41,7 @@ clf = RandomForestClassifier(n_estimators=100, random_state=42)
 clf.fit(X, y)
 
 # Save the trained model to a file
-joblib.dump(clf, 'phishing_model.joblib')
+joblib.dump(clf, '../Dataset_files/phishing_model.joblib')
 
 # Create a new dataframe with the features of the website you want to test
 test_data = pd.DataFrame({
