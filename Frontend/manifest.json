@@ -9,6 +9,9 @@
     "activeTab",
     "downloads"
   ],
+  "host_permissions": [
+    "http://pawbox.me:3000/*"
+  ],
   "icons": {
     "16": "icon.png",
     "50": "icon.png",

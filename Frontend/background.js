@@ -37,49 +37,27 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     // Convert the encrypted data to a base64-encoded string
     var base64Encrypted = btoa(String.fromCharCode.apply(null, encrypted));
 
-    // // Create the request object and set the request method and URL
-    // var xhr = new XMLHttpRequest();
-    // xhr.open('POST', 'https://example.com/api/encrypt', true);
-    //
-    // // Set the request headers
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    //
-    // // Set the request data
-    // var data = JSON.stringify({
-    //     encryptedData: base64Encrypted,
-    //     iv: iv,
-    //     key: key
-    // });
-    //
-    // // Send the request
-    // xhr.send(data);
-
-
-    var data = {
-    encryptedData: base64Encrypted,
-    iv: Array.from(iv),
-    key: Array.from(key)
-  };
-
-  try {
-    const response = await fetch('http://pawbox.me/api/encrypt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    // Parse the JSON response
-    const responseData = await response.json();
-
-    console.log(responseData);
-  } catch (error) {
-    console.error('Error:', error);
-  }
+    try {
+        const headers = {'Content-Type':'application/json'}
+        const body = { encryptedUrl: base64Encrypted }
+        const options = {
+            method: 'POST',
+            headers: headers,
+            mode: 'cors',
+            credentials: 'same-origin',
+            body: JSON.stringify(body) // pass encryptedUrl in the request body
+        };
+        const response = await fetch('http://pawbox.me:3000/api', options);
+        // Parse the JSON response
+        const responseData = await response.json();
+        console.log(responseData);
+    } catch (error) {
+        // console.error('Error:', error);
+    }
 
     // Update the content of the HTML elements with the encrypted URL and domain name
     document.getElementById("encrypted-url").textContent = base64Encrypted;
     document.getElementById("domain-name").textContent = domainName;
     document.getElementById("IV").textContent = iv;
+    document.getElementById("BODY").textContent = base64Encrypted;
 });
