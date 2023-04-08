@@ -9,7 +9,6 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     }
     var url = new URL(tab.url);
     var domainName = url.hostname;
-    // var filename = domainName + ".txt";
     var plainText = domainName;
 
     // Generate a custom key
@@ -47,7 +46,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
             credentials: 'same-origin',
             body: JSON.stringify(body) // pass encryptedUrl in the request body
         };
-        const response = await fetch('http://pawbox.me:3000/api', options);
+        const response = await fetch('http://pawbox.me:4000/api', options);
         // Parse the JSON response
         const responseData = await response.json();
         console.log(responseData);

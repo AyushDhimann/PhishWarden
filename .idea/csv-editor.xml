@@ -17,13 +17,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\Backend\MachineLearning\Training\Shuffled.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\Backend\scraped.csv">
           <value>
             <Attribute>
