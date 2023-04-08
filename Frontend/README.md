@@ -3,4 +3,4 @@
 Consists of :
 
 1. AES Encryption
-2. URL Sending using ASync
+2. URL Sending using fetch()
