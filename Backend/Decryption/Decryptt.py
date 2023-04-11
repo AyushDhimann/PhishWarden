@@ -1,7 +1,8 @@
 import base64
 from Crypto.Cipher import AES
+import re
 
-# Read the text from file.txt
+#Read the text from file.txt
 with open('file.txt', 'r') as f:
     text = f.read()
 
@@ -25,10 +26,13 @@ decrypted_bytes = cipher.decrypt(encrypted_bytes)
 decrypted_text = decrypted_bytes.rstrip(b'\0').decode('iso-8859-1')
 
 # Get the domain name from the decrypted text
-# domain_name = decrypted_text.split('\x01')[1]
-print(decrypted_text)
-print(len(decrypted_text))
-domain_name = decrypted_text[32:-3]
+domain_name = decrypted_text[32:]
+val=domain_name[-1]
+domain_name = re.sub(val, '', domain_name)
 
 # Print the domain name
 print(domain_name)
+
+with open('../Dataset_Files/url.txt', 'a') as url:
+    url.writelines(domain_name)
+url.close()
