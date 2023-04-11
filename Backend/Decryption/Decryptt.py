@@ -1,8 +1,14 @@
 import base64
 from Crypto.Cipher import AES
 
-# Define the encrypted text and key
-encrypted_text = 'MTIzNDU2Nzg5MDEyMzQ1NjEyMzQ1Njc4OTAxMjM0NTa795HYj+4S+4lW/R98d7Bf' + '=='
+# Read the text from file.txt
+with open('file.txt', 'r') as f:
+    text = f.read()
+
+# Get only the value of the text (assuming it's the only value in the file)
+encrypted_text = text.split(':')[1].strip('{}"')
+
+# Define the key and IV
 key = b'1234567890123456'
 iv = b'1234567890123456'
 
@@ -15,12 +21,14 @@ cipher = AES.new(key, AES.MODE_CBC, iv=iv) # Use CBC mode and pass the IV
 # Decrypt the text
 decrypted_bytes = cipher.decrypt(encrypted_bytes)
 
-# Print the decrypted bytes as hex
-print(decrypted_bytes.hex())
+# Strip null bytes and convert to string
+decrypted_text = decrypted_bytes.rstrip(b'\0').decode('iso-8859-1')
 
-# Try decoding the decrypted bytes to a different encoding
-try:
-    decrypted_text = decrypted_bytes.decode('iso-8859-1')
-    print(decrypted_text)
-except UnicodeDecodeError:
-    print("Unable to decode decrypted bytes")
+# Get the domain name from the decrypted text
+# domain_name = decrypted_text.split('\x01')[1]
+print(decrypted_text)
+print(len(decrypted_text))
+domain_name = decrypted_text[32:42]
+
+# Print the domain name
+print(domain_name)

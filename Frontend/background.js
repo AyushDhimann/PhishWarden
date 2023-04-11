@@ -46,7 +46,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
             credentials: 'same-origin',
             body: JSON.stringify(body) // pass encryptedUrl in the request body
         };
-        const response = await fetch('http://pawbox.me:4000/api', options);
+        const response = await fetch('https://eokdhydqf6vxow0.m.pipedream.net', options);
         // Parse the JSON response
         const responseData = await response.json();
         console.log(responseData);
