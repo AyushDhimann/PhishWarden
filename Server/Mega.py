@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.compose import ColumnTransformer
 import joblib
 from Scraper import url, ssl, age, status_code, blacklisted_words
+import requests
 
 # Load the dataset
 data = pd.read_csv('Shuffled.csv')
@@ -67,6 +68,22 @@ if test_y_pred[0] == 1:
 else:
     print("The website is predicted to be a legitimate website.")
     is_phish = 0
+
+
+ext_url = 'https://eozpmt0fkdzpuhu.m.pipedream.net'
+data = {'is_phish': is_phish}
+
+response = requests.post(ext_url, data=data)
+
+print(response.status_code)
+
+
+
+
+
+
+
+
 
 # # Make predictions on the same dataset to evaluate the model performance
 # y_pred = clf.predict(X)
