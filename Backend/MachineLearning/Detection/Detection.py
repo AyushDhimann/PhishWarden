@@ -1,6 +1,6 @@
 import pandas as pd
 import joblib
-from ML.ml import preprocessor
+from ML import preprocessor
 
 # Load the saved model from a file
 clf = joblib.load('phishing_model.joblib')

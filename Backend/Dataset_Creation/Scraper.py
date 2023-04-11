@@ -1,19 +1,16 @@
-# pip install bs4 pythondns dnspython Levenshtein requests tqdm python-whois urllib3 psutil pandas pycryptodome flask
-
-import pandas as pd
-import concurrent.futures
 import time
 import psutil
 import requests
 import socket
-
 from bs4 import BeautifulSoup
 from datetime import datetime
 import dns.resolver
-from tqdm import tqdm
 import ssl
 import whois
 import urllib3
+import sys
+sys.path.append('../Decryption/')
+import Decrypt
 
 urllib3.disable_warnings()
 
@@ -32,13 +29,6 @@ blacklisted_words=[]
 # Record the start time
 start_time = time.perf_counter()
 
-with open('../Dataset_Files/url.txt', 'r') as urlfile:
-    url=urlfile.readline()
-
-print(url)
-
-urlfile.close()
-
 def print_memory_usage():
     process = psutil.Process()
     memory_info = process.memory_info()
@@ -47,12 +37,15 @@ def print_memory_usage():
 print_memory_usage()
 
 def get_ip(url):
+    print(url)
     try:
         ip_address = socket.gethostbyname(url)
         return get_ip(url) if ":" in ip_address else ip_address
     except Exception:
         ip_address = ''
+    print("IP is : ",ip_address)
     return ip_address
+
 
 def get_iframes(url):
     try:
@@ -62,6 +55,7 @@ def get_iframes(url):
 
     except Exception:
         iframes = '0'
+    print("iframes is : ", iframes)
     return iframes
 
 def get_age(url):
@@ -74,6 +68,7 @@ def get_age(url):
         age = delta.days
     except Exception:
         age = ''
+    print("age is : ", age)
     return age
 
 def get_ssl(url):
@@ -83,6 +78,7 @@ def get_ssl(url):
             ssl_present = response.ok
     except Exception:
         ssl_present = False
+    print("ssl_present is : ", ssl_present)
     return ssl_present
 
 
@@ -94,6 +90,7 @@ def get_blacklisted_words(url):
 
     except Exception:
         blacklisted_words = ''
+    print("blacklisted_words is : ", blacklisted_words)
     return blacklisted_words
 
 def get_nameserver(url):
@@ -113,6 +110,7 @@ def get_nameserver(url):
 
     except Exception:
         nameservers = ''
+    print("nameservers is : ", nameservers)
     return nameservers
 
 def get_blacklisted_words_count(url):
@@ -136,8 +134,7 @@ def get_length(url):
     return length_url
 
 # define a function to process a row
-def process_row(row):
-    url = row[0]
+def process_row(url):
     ip = get_ip(url)
     iframes = get_iframes(url)
     age = get_age(url)
@@ -147,22 +144,27 @@ def process_row(row):
     blacklisted_words_count = get_blacklisted_words_count(url)
     status_code = get_status_code(url)
     length = get_length(url)
-    return [url, ip, iframes, age, ssl, iframes, blacklisted_words, nameserver, blacklisted_words_count, status_code, length]
+    print(url, ip, iframes, age, ssl, iframes, blacklisted_words, nameserver, blacklisted_words_count, status_code, length)
 
-# read the input CSV file using pandas
-df = pd.read_csv('../Dataset_Files/URLs.csv')
+# with open('../Dataset_Files/url.txt', 'r') as urlfile:
+#     url=urlfile.readline()
+# print(url)
+
+url = "www.google.com"
 
 # process the rows in parallel using a ThreadPoolExecutor
 output_data = []
-with concurrent.futures.ThreadPoolExecutor() as executor:
-    futures = []
-    for index, row in df.iterrows():
-        future = executor.submit(process_row, row)
-        futures.append(future)
-    for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
-        result = future.result()
-        output_data.append(result)
-        #print(result)
+process_row(url)
+
+# with concurrent.futures.ThreadPoolExecutor() as executor:
+#     futures = []
+#     for index, row in df.iterrows():
+#         future = executor.submit(process_row, row)
+#         futures.append(future)
+#     for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
+#         result = future.result()
+#         output_data.append(result)
+#         #print(result)
 
 # Record the end time
 end_time = time.perf_counter()
@@ -175,5 +177,6 @@ print(f"Time taken: {elapsed_time:.6f} seconds")
 print_memory_usage()
 
 # write the output data to a CSV file using pandas
-df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
-df_output.to_csv('../Dataset_Files/Scraped.csv', index=False)
+# df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
+# df_output.to_csv('../Dataset_Files/Scraped.csv', index=False)
+#urlfile.close()
