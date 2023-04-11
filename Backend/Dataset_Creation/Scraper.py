@@ -32,6 +32,13 @@ blacklisted_words=[]
 # Record the start time
 start_time = time.perf_counter()
 
+with open('../Dataset_Files/url.txt', 'r') as urlfile:
+    url=urlfile.readline()
+
+print(url)
+
+urlfile.close()
+
 def print_memory_usage():
     process = psutil.Process()
     memory_info = process.memory_info()

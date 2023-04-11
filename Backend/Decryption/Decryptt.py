@@ -9,6 +9,8 @@ with open('file.txt', 'r') as f:
 # Get only the value of the text (assuming it's the only value in the file)
 encrypted_text = text.split(':')[1].strip('{}"')
 
+f.close()
+
 # Define the key and IV
 key = b'1234567890123456'
 iv = b'1234567890123456'
@@ -33,6 +35,6 @@ domain_name = re.sub(val, '', domain_name)
 # Print the domain name
 print(domain_name)
 
-with open('../Dataset_Files/url.txt', 'a') as url:
+with open('../Dataset_Files/url.txt', 'w') as url:
     url.writelines(domain_name)
 url.close()
