@@ -28,7 +28,7 @@ decrypted_text = decrypted_bytes.rstrip(b'\0').decode('iso-8859-1')
 # domain_name = decrypted_text.split('\x01')[1]
 print(decrypted_text)
 print(len(decrypted_text))
-domain_name = decrypted_text[32:42]
+domain_name = decrypted_text[32:-3]
 
 # Print the domain name
 print(domain_name)
