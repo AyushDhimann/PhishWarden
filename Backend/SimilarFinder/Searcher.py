@@ -1,6 +1,5 @@
 import Levenshtein
 import heapq
-from ../Decryption
 target = input("Enter target string: ")
 first_char = target[0].lower()
 filename = f"{first_char}.txt"
