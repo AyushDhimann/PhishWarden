@@ -51,7 +51,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
         const body = { encryptedUrl: base64Encrypted }
         const options = {
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            headers: headers,
             mode: 'no-cors',
             credentials: 'same-origin',
             body: JSON.stringify(body) // pass encryptedUrl in the request body
@@ -66,8 +66,8 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
         // console.error('Error:', error);
     }
 
-
     // Update the content of the HTML elements with the encrypted URL and domain name
+
     document.getElementById("encrypted-url").textContent = base64Encrypted;
     document.getElementById("domain-name").textContent = domainName;
     document.getElementById("IV").textContent = iv;
