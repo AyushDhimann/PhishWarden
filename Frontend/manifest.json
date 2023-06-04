@@ -1,0 +1,31 @@
+{
+  "name": "Phishing Detection",
+  "version": "69.420",
+  "manifest_version": 3,
+  "description": "Tracks the URL of websites you visit",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "downloads"
+  ],
+  "host_permissions": [
+    "http://pawbox.me:3000/*"
+  ],
+  "icons": {
+    "16": "icon.png",
+    "50": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon.png",
+      "24": "icon.png",
+      "32": "icon.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

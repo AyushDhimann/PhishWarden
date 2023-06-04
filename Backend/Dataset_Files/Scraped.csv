@@ -1,0 +1,31 @@
+url,ip_address,iframes,age,ssl,iframes,blacklisted_words,nameserver,blacklisted_words_count,status_code,length
+microsoftonline.com,,0,7581,False,0,,"[ns3-34.azure-dns.org, ns2-34.azure-dns.net, ns1-34.azure-dns.com, nse24.o365filtering.com, nse12.o365filtering.com, nse13.o365filtering.com, nse21.o365filtering.com, ns4-34.azure-dns.info]",0,,19
+apple-dns.net,,0,3240,False,0,,,0,,13
+nflxso.net,,0,2573,False,0,,,0,,10
+trafficmanager.net,,0,6346,False,0,,,0,,18
+googleusercontent.com,,0,5258,False,0,,"[ns3.google.com, ns2.google.com, ns1.google.com, ns4.google.com]",0,,21
+cloudapp.net,,0,5360,False,0,,,0,,12
+live.com,204.79.197.212,0,10331,False,0,,,0,,8
+www.monday.com,13.227.254.123,0,10128,False,0,,,0,200,14
+twitter.com,104.244.42.1,0,8481,False,0,,,0,,11
+google.com,142.251.42.78,0,9339,True,0,,"[ns1.google.com, ns3.google.com, ns2.google.com, ns4.google.com]",0,,10
+www.amazon.com,23.50.253.133,0,10388,False,0,,,0,,14
+www.youtube.com,172.217.174.78,0,6629,True,0,,,0,,15
+github.com,20.207.73.82,0,5663,True,0,,,0,,10
+amazon.com,52.94.236.248,0,10388,False,0,,"[ns2.p31.dynect.net, ns3.p31.dynect.net, ns4.p31.dynect.net, pdns1.ultradns.net, pdns6.ultradns.co.uk, ns1.p31.dynect.net]",0,,10
+wordpress.org,198.143.164.252,0,7319,True,0,,,0,200,13
+fastly.net,151.101.1.6,0,4376,True,0,,"[ns1.fastly.net, ns2.fastly.net, ns3.fastly.net, ns4.fastly.net]",0,,10
+www.coinbase.com,104.18.4.43,0,4301,False,0,,,0,403,16
+instagram.com,157.240.16.174,0,6885,True,0,,,0,200,13
+edgekey.net,,0,7859,False,0,,,0,,11
+wikipedia.org,103.102.166.224,0,8123,True,0,,,0,,13
+googlevideo.com,142.250.192.68,0,7261,True,0,,,0,,15
+doubleclick.net,142.251.42.14,0,9947,False,0,,,0,,15
+cloudflare.com,104.16.133.229,0,5166,True,0,,"[ns3.cloudflare.com, ns4.cloudflare.com, ns5.cloudflare.com, ns6.cloudflare.com, ns7.cloudflare.com]",0,200,14
+bing.com,13.107.21.200,0,9934,False,0,,,0,,8
+www.spotify.com,35.186.224.25,0,6197,True,0,,,0,200,15
+t.co,104.244.42.133,0,4733,False,0,,,0,200,4
+facebook.com,31.13.79.35,0,9509,False,0,,,0,200,12
+office.com,13.107.6.156,0,8757,False,0,,,0,,10
+zoom.us,170.114.52.2,0,7657,True,0,,,0,200,7
+vimeo.com,162.159.128.61,0,6691,True,0,,,0,200,9

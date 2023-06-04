@@ -1,0 +1,12 @@
+bs4
+pythondns
+dnspython
+Levenshtein
+requests
+tqdm
+python-whois
+urllib3
+psutil
+pandas
+pycryptodome
+flask
