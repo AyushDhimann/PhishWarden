@@ -1,14 +1,23 @@
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.compose import ColumnTransformer
+from sklearn.metrics import accuracy_score, precision_score
 import joblib
 import requests
 
 from Scraper import url, ssl, age, status_code, blacklisted_words
 
+# Load the saved model
+clf = joblib.load('phishing_model.joblib')
+
+# Define the feature column names expected by the preprocessor
+feature_cols = ['url', 'ssl', 'age', 'status_code', 'blacklisted_words']
+
+# Create a DataFrame from the feature data
+features = [[url, ssl, age, status_code, blacklisted_words]]
+test_data = pd.DataFrame(features, columns=feature_cols)
 
 # Load the dataset
 data = pd.read_csv('Shuffled.csv')
@@ -16,18 +25,6 @@ data = pd.read_csv('Shuffled.csv')
 # Separate the features and target variable
 X = data.iloc[:, :-1]
 y = data.iloc[:, -1]
-
-# Define the feature column names expected by the preprocessor
-feature_cols = ['url', 'ssl', 'age', 'status_code', 'blacklisted_words']
-
-# Create a DataFrame from the feature data
-# url = url
-# ssl = ssl
-# age = age
-# status_code = status_code
-# blacklisted_words = blacklisted_words
-features = [[url, ssl, age, status_code, blacklisted_words]]
-test_data = pd.DataFrame(features, columns=feature_cols)
 
 # Preprocess the numerical features using StandardScaler
 numerical_features = ['ssl', 'age', 'status_code']
@@ -52,13 +49,6 @@ preprocessor = ColumnTransformer(
 X = preprocessor.fit_transform(X)
 test_X = preprocessor.transform(test_data)
 
-# Train the model on the full dataset
-clf = RandomForestClassifier(n_estimators=100, random_state=42)
-clf.fit(X, y)
-
-# Save the trained model to a file
-joblib.dump(clf, 'phishing_model.joblib')
-
 # Predict the phishing status of the test website
 test_y_pred = clf.predict(test_X)
 
@@ -71,9 +61,15 @@ else:
     print("The website is predicted to be a legitimate website.")
     is_phish = "no"
 
+# Calculate accuracy and precision
+accuracy = accuracy_score(y, clf.predict(X))
+precision = precision_score(y, clf.predict(X))
+
+print(f"Accuracy: {accuracy:.2f}")
+print(f"Precision: {precision:.2f}")
 
 from Encrypt import encrypt_data
-result=encrypt_data(is_phish)
+result = encrypt_data(is_phish)
 cleanedResult = result + "=="
 print("Result is ", cleanedResult)
 
@@ -83,33 +79,3 @@ data = {'is_phish': cleanedResult}
 response = requests.post(ext_url, data=data)
 
 print(response.status_code)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # Make predictions on the same dataset to evaluate the model performance
-# y_pred = clf.predict(X)
-# accuracy = accuracy_score(y, y_pred)
-# print('Accuracy on the full dataset:', round(accuracy * 100, 2), '%')
-#
-# # Calculate the F1 score of the model on the full dataset
-# f1 = f1_score(y, y_pred)
-# print('F1 score on the full dataset:', round(f1 * 100, 2), '%')

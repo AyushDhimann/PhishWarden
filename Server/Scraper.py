@@ -8,7 +8,6 @@ import dns.resolver
 import ssl
 import whois
 import urllib3
-
 import Decrypt
 
 urllib3.disable_warnings()

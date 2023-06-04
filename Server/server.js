@@ -1,10 +1,3 @@
-// sudo apt-get install nodejs
-// sudo apt-get install npm
-// npm install express
-// npm install body-parser
-// make sure it is placed in the server directory
-// node server.js
-
 import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
@@ -16,6 +9,14 @@ const port = 4000;
 // parse application/json
 app.use(bodyParser.json());
 
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  next();
+});
+
 // POST endpoint for receiving encrypted URL
 app.post('/api', (req, res) => {
   // get the data from the request body
@@ -24,6 +25,7 @@ app.post('/api', (req, res) => {
   // write the data to a file called "file.txt"
   fs.writeFile('file.txt', JSON.stringify(data), (err) => {
     if (err) throw err;
+    console.log(' ');
     console.log('Data written to file');
   });
 

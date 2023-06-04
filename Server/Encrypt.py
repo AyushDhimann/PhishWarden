@@ -2,7 +2,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives import padding
 import base64
 customKey="1234567890123456"
-txttobeencrypted="chat.forefront.ai"
+
 def encrypt_data(txttobeencrypted):
     # Encoding the Key
     key = customKey.encode()
@@ -23,5 +23,3 @@ def encrypt_data(txttobeencrypted):
 
     # Return the encrypted data
     return base64Encrypted
-
-print(encrypt_data(txttobeencrypted))

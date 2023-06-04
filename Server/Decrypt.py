@@ -5,10 +5,11 @@ import re
 #Read the text from file.txt
 with open('file.txt', 'r') as f:
     text = f.read()
-
 # Get only the value of the text (assuming it's the only value in the file)
 encrypted_text = text.split(':')[1].strip('{}"')
-print(encrypted_text)
+print()
+print("Encrypted Text : ",encrypted_text)
+print()
 f.close()
 
 # Define the key and IV
@@ -26,7 +27,7 @@ decrypted_bytes = cipher.decrypt(encrypted_bytes)
 
 # Strip null bytes and convert to string
 decrypted_text = decrypted_bytes.rstrip(b'\0').decode('iso-8859-1')
-
+print(decrypted_text)
 # Get the domain name from the decrypted text
 domain_name = decrypted_text[32:]
 val=domain_name[-1]
