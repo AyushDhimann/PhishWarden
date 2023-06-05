@@ -1,6 +1,6 @@
 {
   "name": "Phishing Detection",
-  "version": "69.420",
+  "version": "56.0",
   "manifest_version": 3,
   "description": "Tracks the URL of websites you visit",
   "permissions": [

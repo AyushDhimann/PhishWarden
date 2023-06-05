@@ -202,5 +202,3 @@
 # 
 # print(f"Time taken: {elapsed_time:.6f} seconds")
 # print_memory_usage()
-
-print(hex(1234567890123456))

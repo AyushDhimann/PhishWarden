@@ -10,7 +10,7 @@ import whois
 import urllib3
 import sys
 sys.path.append('../Decryption/')
-# import Decrypt
+import Decrypt
 
 urllib3.disable_warnings()
 

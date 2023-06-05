@@ -42,7 +42,7 @@ app.post('/api', (req, res) => {
   });
 
   // send a response to the client
-  res.send('Data received and saved to file');
+  res.json({ message: 'Data received and saved to file' });
 });
 
 app.listen(port, () => {

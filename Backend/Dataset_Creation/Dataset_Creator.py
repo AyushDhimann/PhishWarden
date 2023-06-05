@@ -32,7 +32,7 @@ blacklisted_words=[]
 # Record the start time
 start_time = time.perf_counter()
 
-with open('../Dataset_Files/url.txt', 'r') as urlfile:
+with open('../Dataset_Files/online-valid-scrapped-cut.csv', 'r') as urlfile:
     url=urlfile.readline()
 
 print(url)
@@ -150,7 +150,7 @@ def process_row(row):
     return [url, ip, iframes, age, ssl, iframes, blacklisted_words, nameserver, blacklisted_words_count, status_code, length]
 
 # read the input CSV file using pandas
-df = pd.read_csv('../Dataset_Files/URLs.csv')
+df = pd.read_csv('../Dataset_Files/online-valid-scrapped-cut.csv')
 
 # process the rows in parallel using a ThreadPoolExecutor
 output_data = []
@@ -176,4 +176,4 @@ print_memory_usage()
 
 # write the output data to a CSV file using pandas
 df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
-df_output.to_csv('../Dataset_Files/Scraped.csv', index=False)
+df_output.to_csv('../Dataset_Files/Scrapednew.csv', index=False)

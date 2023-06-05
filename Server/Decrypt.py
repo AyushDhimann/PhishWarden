@@ -5,6 +5,7 @@ import re
 #Read the text from file.txt
 with open('file.txt', 'r') as f:
     text = f.read()
+
 # Get only the value of the text (assuming it's the only value in the file)
 encrypted_text = text.split(':')[1].strip('{}"')
 print()
