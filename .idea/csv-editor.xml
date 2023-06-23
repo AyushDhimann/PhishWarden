@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Backend\MachineLearning\Detection\Shuffled.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Server\Shuffled.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

