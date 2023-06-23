@@ -23,11 +23,16 @@ app.post('/api', (req, res) => {
   const data = req.body;
 
   // write the data to a file called "file.txt"
-  fs.writeFile('file.txt', JSON.stringify(data), (err) => {
-    if (err) throw err;
-    console.log(' ');
-    console.log('Data written to file');
+   fs.writeFile('file.txt', JSON.stringify(data), (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error writing file' });
+    } else {
+      console.log('Data written to file');
+      res.json({ message: 'Data received and saved to file' });
+    }
   });
+
 
   // spawn a child process to execute the Python script
   const ls = spawn('python3', ['Mega.py']);

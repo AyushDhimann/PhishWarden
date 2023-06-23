@@ -10,7 +10,7 @@
     "downloads"
   ],
   "host_permissions": [
-    "http://139.59.26.201:4000/*"
+    "http://notology.me:4000/*"
   ],
   "icons": {
     "16": "icon.png",
