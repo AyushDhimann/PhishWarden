@@ -169,6 +169,7 @@ process_row(url)
 #         output_data.append(result)
 #         #print(result)
 
+
 # Record the end time
 end_time = time.perf_counter()
 

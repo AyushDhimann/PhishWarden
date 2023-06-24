@@ -163,7 +163,7 @@ df = pd.read_csv('../Dataset_Files/online-valid-scrapped-cut.csv')
 
 # process the rows in parallel using a ThreadPoolExecutor
 output_data = []
-with concurrent.futures.ThreadPoolExecutor() as executor:
+with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
     futures = []
     for index, row in df.iterrows():
         future = executor.submit(process_row, row)
@@ -171,7 +171,6 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
         result = future.result()
         output_data.append(result)
-        #print(result)
 
 
 print("Before printing output data in a CSV file ")
