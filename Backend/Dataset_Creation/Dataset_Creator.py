@@ -96,9 +96,6 @@ def get_blacklisted_words(url):
         response = requests.get(url)
         webpage_text = response.text.lower()
         blacklisted_words = [word for word in blacklist if f' {word} ' in f' {webpage_text} ']
-        df = pd.DataFrame({'webpage_text': [webpage_text]})
-
-        df.to_csv('webpage_text.csv')
 
     except Exception:
         blacklisted_words = ''
@@ -188,4 +185,4 @@ print_memory_usage()
 
 # write the output data to a CSV file using pandas
 df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
-df_output.to_csv('../Dataset_Files/Scrapednewtest.csv', index=False)
+df_output.to_csv('../Dataset_Files/Scrapednew.csv', index=False)
