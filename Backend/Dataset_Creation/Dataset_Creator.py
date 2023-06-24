@@ -173,6 +173,18 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
         output_data.append(result)
         #print(result)
 
+
+print("Before printing output data in a CSV file ")
+print_memory_usage()
+
+# write the output data to a CSV file using pandas
+df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
+df_output.to_csv('../Dataset_Files/Scrapednew.csv', index=False)
+
+
+print("After printing output data in a CSV file ")
+print_memory_usage()
+
 # Record the end time
 end_time = time.perf_counter()
 
@@ -180,9 +192,3 @@ end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 
 print(f"Time taken: {elapsed_time:.6f} seconds")
-
-print_memory_usage()
-
-# write the output data to a CSV file using pandas
-df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
-df_output.to_csv('../Dataset_Files/Scrapednew.csv', index=False)
