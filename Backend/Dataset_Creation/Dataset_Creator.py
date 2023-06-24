@@ -54,6 +54,7 @@ def get_ip(url):
         ip_address = ''
     return ip_address
 
+#YOUR
 def get_iframes(url):
     try:
         response = requests.get(url)
@@ -85,16 +86,21 @@ def get_ssl(url):
         ssl_present = False
     return ssl_present
 
+#YOUR
+
+import requests
+import dns.resolver
 
 def get_blacklisted_words(url):
     try:
         response = requests.get(url)
-        webpage_text = response.text
-        blacklisted_words = [word for word in blacklist if word in webpage_text]
+        webpage_text = response.text.lower()
+        blacklisted_words = [word for word in blacklist if f' {word} ' in f' {webpage_text} ']
 
     except Exception:
         blacklisted_words = ''
     return blacklisted_words
+
 
 def get_nameserver(url):
     try:
@@ -116,6 +122,7 @@ def get_nameserver(url):
     return nameservers
 
 def get_blacklisted_words_count(url):
+    blacklisted_words = get_blacklisted_words(url)
     return len(blacklisted_words)
 
 def get_status_code(url):
@@ -134,6 +141,8 @@ def get_length(url):
     except Exception:
         length_url = ''
     return length_url
+
+
 
 # define a function to process a row
 def process_row(row):
