@@ -1,31 +1,31 @@
 url,ip_address,iframes,age,ssl,iframes,blacklisted_words,nameserver,blacklisted_words_count,status_code,length
-http://controlladispositivoweb.com/,,[],1,False,[],[],,0,,35
-http://convalida-manualmente.com/,,[],2,False,[],[],,0,,33
-http://controlloaccessoweb.com/,,[],1,False,[],[],,0,,31
-https://amphorm.fr/caf/red_Country,,[],8417,False,[],"['eth', 'xrp']",,0,,34
-https://sharmiladevi.com/optus.html,,[],4222,False,[],[],,0,,35
-http://revokewallet.cash/,,[],0,False,[],"['scam', 'phishing', 'fast', 'verify', 'account', 'apple', 'twitter', 'eth', 'join', 'discord']",,0,,25
-https://b-40.club/wp-content/themes/seotheme/optus.html,,[],1176,False,[],[],,0,,55
-https://tengai.shop/wp-content/last/IT/info/web/clc/login.php,,[],,False,[],"['login', 'eth', 'group']",,0,,61
-https://wordpressmu-978594-3576741.cloudwaysapps.com/die/true/details.php,,"[<iframe class=""footer-info-overlay-iframe"" id=""overlay-iframe"" src=""./src/saved_resource.html"" style=""height: 100%;""></iframe>]",4169,False,"[<iframe class=""footer-info-overlay-iframe"" id=""overlay-iframe"" src=""./src/saved_resource.html"" style=""height: 100%;""></iframe>]","['login', 'confirm', 'eth', 'group']",,0,,73
-https://su.tselenograd.tselinograd.su/online.php,,[],,False,[],"['gift', 'real', 'login', 'account', 'confirm', 'bank', 'google', 'currency', 'eth']",,0,,48
-https://ortholight.ru/images/vip/,,"[<iframe height=""0"" src=""https://www.googletagmanager.com/ns.html?id=GTM-TPSSZLM"" style=""display:none;visibility:hidden"" width=""0""></iframe>]",3900,False,"[<iframe height=""0"" src=""https://www.googletagmanager.com/ns.html?id=GTM-TPSSZLM"" style=""display:none;visibility:hidden"" width=""0""></iframe>]","['fast', 'account', 'bank', 'apple', 'google', 'youtube', 'currency', 'defi', 'defi', 'telegram']",,0,,33
-https://tracking-express.serveblog.net/dhl/DHH/dhl/,,[],,False,[],[],,0,,51
-https://vps93477.inmotionhosting.com/wp-admin/network/Folder/FREE/onasm/onaa/page-1.html,,[],8145,False,[],"['phishing', 'login', 'account', 'apple', 'microsoft', 'google', 'eth', 'group']",,0,,88
-https://86au.cfd,,[],,False,[],[],,0,,16
-https://dhl.5494613.wordoflifecenter.org/tracking/2926332?page=307,,[],8612,False,[],[],,0,,66
-https://www.toposcanb30.com/wp-content/uploads/2021/02/1and1/mail.ionos.com/,,"[<iframe class=""hidden"" name=""loginTarget"" src=""../../../../../../""></iframe>]",1587,False,"[<iframe class=""hidden"" name=""loginTarget"" src=""../../../../../../""></iframe>]","['login', 'apple', 'outlook', 'aol', 'eth', 'group']",,0,,76
-https://86ap.cfd,,[],,False,[],[],,0,,16
-https://86ah.cfd,,[],,False,[],[],,0,,16
-https://nova-oferta-inclusa.shop/z-589622140058/965147d/product.php?sk,,[],3,False,[],"['seller', 'confirm', 'google', 'eth', 'ada', 'defi', 'defi']",,0,,70
-https://wordpressmu-978594-3576741.cloudwaysapps.com/die/true/action.php,,"[<iframe class=""footer-info-overlay-iframe"" id=""overlay-iframe"" src=""./src/saved_resource.html"" style=""height: 100%;""></iframe>]",4169,False,"[<iframe class=""footer-info-overlay-iframe"" id=""overlay-iframe"" src=""./src/saved_resource.html"" style=""height: 100%;""></iframe>]","['login', 'confirm', 'eth', 'group']",,0,,72
-https://86ak.cfd,,[],,False,[],[],,0,,16
-https://86az.cfd,,[],,False,[],[],,0,,16
-https://86aa.cfd,,[],,False,[],[],,0,,16
-https://86aq.cfd,,[],,False,[],[],,0,,16
-https://86ay.cfd,,[],,False,[],[],,0,,16
-https://86ai.cfd,,[],,False,[],[],,0,,16
-http://virtulbancbogotapersons.liveblog365.com/,,[],496,False,[],[],,0,,47
-https://86am.cfd,,[],,False,[],[],,0,,16
-https://dev-bgneraloppsur233.pantheonsite.io/,,[],,False,[],"['secure', 'login', 'google', 'eth', 'ada', 'group']",,0,,45
-https://neddev.d3btetvvu2kekg.amplifyapp.com/ZHRoPSI0MHB4IiBoZWlnaHQ9IjQwcHgiIHZpZXdCb3g9IjAgMCA1MM_updating.html?rr0298938029=,,[],1874,False,[],"['fast', 'secure', 'login', 'account', 'update', 'confirm', 'bank', 'group']",,0,,127
+apple-dns.net,,0,3320,False,0,,"[a.ns.apple.com, b.ns.apple.com, c.ns.apple.com, d.ns.apple.com]",0,,13
+googleusercontent.com,,0,5338,False,0,,"[ns1.google.com, ns3.google.com, ns4.google.com, ns2.google.com]",0,,21
+cloudapp.net,,0,5440,False,0,,"[ns12-201.azure-dns.info, ns11-201.azure-dns.org, ns10-201.azure-dns.net, ns9-201.azure-dns.com]",0,,12
+edgekey.net,,0,7939,False,0,,"[ns7-65.akam.net, ns5-66.akam.net, a6-65.akam.net, a12-65.akam.net, a5-65.akam.net, a16-65.akam.net, a18-65.akam.net, a28-65.akam.net, a13-65.akam.net, ns1-66.akam.net, usw6.akam.net, adns1.akam.net, ns4-66.akam.net]",0,,11
+trafficmanager.net,,0,6426,False,0,,"[tm1.edgedns-tm.info, tm2.edgedns-tm.info, tm1.dns-tm.com, tm2.dns-tm.com]",0,,18
+nflxso.net,,0,2652,False,0,,"[e.ns.nflxso.net, f.ns.nflxso.net]",0,,10
+microsoftonline.com,,0,7661,False,0,,"[ns4-34.azure-dns.info, ns1-34.azure-dns.com, ns2-34.azure-dns.net, ns3-34.azure-dns.org, nse12.o365filtering.com, nse13.o365filtering.com, nse21.o365filtering.com, nse24.o365filtering.com]",0,,19
+cloudflare.com,104.16.133.229,0,5245,True,0,,"[ns7.cloudflare.com, ns3.cloudflare.com, ns5.cloudflare.com, ns4.cloudflare.com, ns6.cloudflare.com]",0,200,14
+t.co,104.244.42.133,0,4813,True,0,,"[c.u06.twtrdns.net, d.r06.twtrdns.net, d.u06.twtrdns.net, a.r06.twtrdns.net, a.u06.twtrdns.net, b.r06.twtrdns.net, b.u06.twtrdns.net, c.r06.twtrdns.net]",0,200,4
+github.com,20.207.73.82,0,5743,True,0,,"[ns-1707.awsdns-21.co.uk, ns-421.awsdns-52.com, ns-520.awsdns-01.net, dns1.p08.nsone.net, dns2.p08.nsone.net, dns3.p08.nsone.net, dns4.p08.nsone.net, ns-1283.awsdns-32.org]",0,200,10
+www.coinbase.com,104.18.5.43,0,4381,False,0,,,0,403,16
+wikipedia.org,103.102.166.224,0,8203,True,0,,"[ns2.wikimedia.org, ns0.wikimedia.org, ns1.wikimedia.org]",0,200,13
+doubleclick.net,172.217.160.206,0,10027,False,0,,"[ns1.google.com, ns3.google.com, ns4.google.com, ns2.google.com]",0,403,15
+vimeo.com,162.159.128.61,0,6771,True,0,,"[ns-682.awsdns-21.net, ns-70.awsdns-08.com, ns-1463.awsdns-54.org, ns-1886.awsdns-43.co.uk]",0,200,9
+www.amazon.com,108.158.65.52,0,10468,False,0,,,0,503,14
+wordpress.org,198.143.164.252,0,7399,True,0,,"[ns1.wordpress.org, ns4.wordpress.org, ns2.wordpress.org, ns3.wordpress.org]",0,200,13
+www.youtube.com,142.250.77.174,0,6709,True,0,,,0,200,15
+zoom.us,170.114.52.2,0,7737,True,0,,"[ns-387.awsdns-48.com, ns-888.awsdns-47.net, ns-1137.awsdns-14.org, ns-1772.awsdns-29.co.uk]",0,200,7
+www.spotify.com,35.186.224.25,0,6277,True,0,,,0,200,15
+google.com,172.217.163.206,0,9419,True,0,,"[ns2.google.com, ns4.google.com, ns3.google.com, ns1.google.com]",0,200,10
+www.monday.com,18.155.68.34,0,10208,True,0,,,0,200,14
+live.com,204.79.197.212,0,10411,True,0,,"[ns7-34.azure-dns.org, ns8-34.azure-dns.info, nse12.o365filtering.com, nse13.o365filtering.com, nse21.o365filtering.com, ns1-34.azure-dns.com, ns2-34.azure-dns.net, ns5-34.azure-dns.com]",0,200,8
+googlevideo.com,142.250.196.68,0,7341,True,0,,"[ns3.google.com, ns4.google.com, ns2.google.com, ns1.google.com]",0,200,15
+facebook.com,157.240.16.35,0,9589,True,0,,"[b.ns.facebook.com, c.ns.facebook.com, d.ns.facebook.com, a.ns.facebook.com]",0,200,12
+fastly.net,151.101.1.6,0,4455,True,0,,"[ns3.fastly.net, ns4.fastly.net, ns1.fastly.net, ns2.fastly.net]",0,200,10
+twitter.com,104.244.42.65,0,8561,True,0,,"[d.u06.twtrdns.net, a.r06.twtrdns.net, a.u06.twtrdns.net, b.r06.twtrdns.net, b.u06.twtrdns.net, c.r06.twtrdns.net, c.u06.twtrdns.net, d.r06.twtrdns.net]",0,200,11
+bing.com,204.79.197.200,0,10014,True,0,,"[ns2-204.azure-dns.net, ns4-204.azure-dns.info, ns3-204.azure-dns.org, dns1.p09.nsone.net, dns2.p09.nsone.net, dns3.p09.nsone.net, dns4.p09.nsone.net, ns1-204.azure-dns.com]",0,200,8
+instagram.com,157.240.16.174,0,6965,True,0,,"[a.ns.instagram.com, c.ns.instagram.com, b.ns.instagram.com, d.ns.instagram.com]",0,200,13
+office.com,13.107.6.156,0,8837,True,0,,"[ns3-32.azure-dns.org, ns4-32.azure-dns.info, nse12.o365filtering.com, nse13.o365filtering.com, nse21.o365filtering.com, nse24.o365filtering.com, ns1-32.azure-dns.com, ns2-32.azure-dns.net]",0,200,10
+amazon.com,54.239.28.85,0,10468,False,0,,"[ns2.amzndns.net, ns2.amzndns.org, ns1.amzndns.co.uk, ns1.amzndns.com, ns1.amzndns.net, ns1.amzndns.org, ns2.amzndns.co.uk, ns2.amzndns.com]",0,503,10
