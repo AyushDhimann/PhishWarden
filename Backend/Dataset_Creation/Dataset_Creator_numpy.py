@@ -6,7 +6,7 @@ import time
 import psutil
 import requests
 import socket
-
+import numpy as np
 from bs4 import BeautifulSoup
 from datetime import datetime
 import dns.resolver
@@ -145,27 +145,32 @@ def get_length(url):
 
 
 # define a function to process a row
+
+
 def process_row(row):
     url = row[0]
-    ip = get_ip(url)
-    iframes = get_iframes(url)
-    age = get_age(url)
-    ssl = get_ssl(url)
-    blacklisted_words = get_blacklisted_words(url)
-    nameserver = get_nameserver(url)
-    blacklisted_words_count = get_blacklisted_words_count(url)
-    status_code = get_status_code(url)
-    length = get_length(url)
-    return [url, ip, iframes, age, ssl, iframes, blacklisted_words, nameserver, blacklisted_words_count, status_code, length]
+    ip = np.array([get_ip(url)])
+    iframes = np.array([get_iframes(url)])
+    age = np.array([get_age(url)])
+    ssl = np.array([get_ssl(url)])
+    blacklisted_words = np.array([get_blacklisted_words(url)])
+    nameserver = np.array([get_nameserver(url)])
+    blacklisted_words_count = np.array([get_blacklisted_words_count(url)])
+    status_code = np.array([get_status_code(url)])
+    length = np.array([get_length(url)])
+    return np.concatenate((row, ip, iframes, age, ssl, blacklisted_words, nameserver, blacklisted_words_count, status_code, length))
 
 # read the input CSV file using pandas
 df = pd.read_csv('../Dataset_Files/online-valid-scrapped-cut.csv')
+
+# convert the DataFrame to a NumPy array
+input_data = df.to_numpy()
 
 # process the rows in parallel using a ThreadPoolExecutor
 output_data = []
 with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
     futures = []
-    for index, row in df.iterrows():
+    for row in input_data:
         future = executor.submit(process_row, row)
         futures.append(future)
     for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
@@ -173,12 +178,11 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         output_data.append(result)
 
 
-print("Before printing output data in a CSV file ")
-print_memory_usage()
+# convert the output data to a NumPy array
+output_data = np.array(output_data)
 
-# write the output data to a CSV file using pandas
-df_output = pd.DataFrame(output_data, columns=['url', 'ip_address', 'iframes', 'age', 'ssl', 'iframes', 'blacklisted_words', 'nameserver', 'blacklisted_words_count', 'status_code', 'length'])
-df_output.to_csv('../Dataset_Files/Scrapednew.csv', index=False)
+# write the output data to a CSV file using NumPy
+np.savetxt('../Dataset_Files/Scrapednew.csv', output_data, delimiter=',', fmt='%s')
 
 
 print("After printing output data in a CSV file ")
