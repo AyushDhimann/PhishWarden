@@ -14,6 +14,7 @@ from tqdm import tqdm
 import ssl
 import whois
 import urllib3
+import tldextract
 
 urllib3.disable_warnings()
 
@@ -25,14 +26,14 @@ blacklist = ['spam', 'scam', 'fraud', 'phishing', 'gift', 'surprise', 'real', 'l
              'cryptocurrencies', 'crypto', 'currency', 'blockchain', 'btc', 'eth', 'ltc', 'doge', 'bch', 'xrp', 'xlm',
              'ada', 'usdt', 'usdc', 'dai', 'wbtc', 'uniswap', 'sushiswap', 'pancakeswap', 'defi', 'decentralized',
              'finance', 'defi', 'yield', 'farming', 'staking', 'staking', 'pool', 'pooling', 'staking', 'staking',
-             'staking', 'join', 'group', 'telegram', 'whatsapp', 'discord', 'discord nitro', 'antivirus','free','true']
+             'staking', 'join', 'group', 'telegram', 'whatsapp', 'discord', 'discord nitro', 'antivirus','free','true','token']
 
 blacklisted_words=[]
 
 # Record the start time
 start_time = time.perf_counter()
 
-with open('../Dataset_Files/online-valid-scrapped-cut.csv', 'r') as urlfile:
+with open('modified_phish.csv', 'r') as urlfile:
     url=urlfile.readline()
 
 print(url)
@@ -41,7 +42,7 @@ urlfile.close()
 
 def print_memory_usage():
     process = psutil.Process()
-    memory_info = process.memory_info()     
+    memory_info = process.memory_info()
     print(f"Memory usage: {memory_info.rss / (1024*1024):.2f} MB")
 
 print_memory_usage()
@@ -96,11 +97,11 @@ def get_blacklisted_words(url):
         response = requests.get(url)
         webpage_text = response.text.lower()
         blacklisted_words = [word for word in blacklist if f' {word} ' in f' {webpage_text} ']
-
+        print("hello")
     except Exception:
-        blacklisted_words = ''
-    return blacklisted_words
+        blacklisted_words = []
 
+    return blacklisted_words
 
 def get_nameserver(url):
     try:
@@ -110,16 +111,9 @@ def get_nameserver(url):
             data = rdata.to_text()
             nsdata.append(data[:-1])
         output_list = [line.strip() for line in nsdata]
-
-        output_str = ''.join(
-            output_list[i] if i == 0 else f', {output_list[i]}'
-            for i in range(len(output_list))
-        )
-        nameservers = f'[{output_str}]'
-
     except Exception:
-        nameservers = ''
-    return nameservers
+        output_list = []
+    return output_list
 
 def get_blacklisted_words_count(url):
     blacklisted_words = get_blacklisted_words(url)
@@ -146,22 +140,25 @@ def get_length(url):
 
 # define a function to process a row
 
-
+# define a function to process a row
 def process_row(row):
     url = row[0]
     ip = np.array([get_ip(url)])
     iframes = np.array([get_iframes(url)])
     age = np.array([get_age(url)])
     ssl = np.array([get_ssl(url)])
-    blacklisted_words = np.array([get_blacklisted_words(url)])
-    nameserver = np.array([get_nameserver(url)])
     blacklisted_words_count = np.array([get_blacklisted_words_count(url)])
+    nameservers = get_nameserver(url)
     status_code = np.array([get_status_code(url)])
     length = np.array([get_length(url)])
-    return np.concatenate((row, ip, iframes, age, ssl, blacklisted_words, nameserver, blacklisted_words_count, status_code, length))
+    blacklisted_words_str = ', '.join(get_blacklisted_words(url))
+    return np.concatenate((row, ip, iframes, age, ssl, [', '.join(nameservers)], blacklisted_words_count, status_code, length, [blacklisted_words_str]))
+
+# define the column names for the output DataFrame
+column_names = ['url', 'ip_address', 'iframes', 'age', 'ssl', 'nameserver', 'blacklisted_words_count', 'status_code', 'length_of_url', 'blacklisted_words']
 
 # read the input CSV file using pandas
-df = pd.read_csv('../Dataset_Files/online-valid-scrapped-cut.csv')
+df = pd.read_csv('modified_phish.csv')
 
 # convert the DataFrame to a NumPy array
 input_data = df.to_numpy()
@@ -177,13 +174,14 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
         result = future.result()
         output_data.append(result)
 
-
 # convert the output data to a NumPy array
 output_data = np.array(output_data)
 
-# write the output data to a CSV file using NumPy
-np.savetxt('../Dataset_Files/Scrapednew.csv', output_data, delimiter=',', fmt='%s')
+# create a DataFrame using the output data and the column names
+df_output = pd.DataFrame(output_data, columns=column_names)
 
+# write the output data to a CSV file using pandas
+df_output.to_csv('phish.csv', index=False)
 
 print("After printing output data in a CSV file ")
 print_memory_usage()
