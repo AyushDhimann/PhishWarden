@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Backend\Dataset_Files\Scrapednew.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Backend\Dataset_Files\Shuffled.csv">
           <value>
             <Attribute>

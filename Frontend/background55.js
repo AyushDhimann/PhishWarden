@@ -52,7 +52,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
         const options = {
             method: 'POST',
             headers: headers,
-            // mode: 'no-cors',
+            mode: 'no-cors',
             credentials: 'same-origin',
             body: JSON.stringify(body) // pass encryptedUrl in the request body
         };
@@ -62,30 +62,14 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
         // Parse the JSON response
         const responseData = await response.json();
         console.log("responseData:", responseData);
-
-        // Decrypt the URL
-        var encryptedResult = responseData.encryptedUrl;
-        console.log("encryptedResult:", encryptedResult);
-        var rencrypted = new Uint8Array(atob(encryptedResult).split("").map(function(c) { return c.charCodeAt(0); }));
-        var rkey = rencrypted.slice(0, 16);
-        var riv = rencrypted.slice(16, 32);
-        var rdata = rencrypted.slice(32);
-        var raesKey = await crypto.subtle.importKey("raw", rkey, { name: "AES-CBC" }, false, ["decrypt"]);
-        var decryptedData = await crypto.subtle.decrypt(
-            { name: "AES-CBC", iv: riv },
-            raesKey,
-            rdata
-        );
-        var isLegitimate = new TextDecoder().decode(decryptedData);
-        console.log("decryptedUrl:", isLegitimate);
-
-        // Update the content of the HTML elements with the encrypted URL, domain name, and decrypted URL
-        document.getElementById("encrypted-url").textContent = base64Encrypted;
-        document.getElementById("domain-name").textContent = domainName;
-        document.getElementById("IV").textContent = iv;
-        document.getElementById("BODY").textContent = base64Encrypted;
-        document.getElementById("isLegitimate").textContent = isLegitimate;
     } catch (error) {
         // console.error('Error:', error);
     }
+
+    // Update the content of the HTML elements with the encrypted URL and domain name
+
+    document.getElementById("encrypted-url").textContent = base64Encrypted;
+    document.getElementById("domain-name").textContent = domainName;
+    document.getElementById("IV").textContent = iv;
+    document.getElementById("BODY").textContent = base64Encrypted;
 });
