@@ -82,16 +82,19 @@ def get_ssl(url):
     return ssl_present
 
 
+import requests
+import dns.resolver
+
 def get_blacklisted_words(url):
     try:
         response = requests.get(url)
-        webpage_text = response.text
-        blacklisted_words = [word for word in blacklist if word in webpage_text]
+        webpage_text = response.text.lower()
+        blacklisted_words = [word for word in blacklist if f' {word} ' in f' {webpage_text} ']
 
     except Exception:
         blacklisted_words = ''
-    print("blacklisted_words is : ", blacklisted_words)
     return blacklisted_words
+
 
 def get_nameserver(url):
     try:
@@ -110,10 +113,10 @@ def get_nameserver(url):
 
     except Exception:
         nameservers = ''
-    print("nameservers is : ", nameservers)
     return nameservers
 
 def get_blacklisted_words_count(url):
+    blacklisted_words = get_blacklisted_words(url)
     return len(blacklisted_words)
 
 def get_status_code(url):
@@ -165,6 +168,7 @@ process_row(url)
 #         result = future.result()
 #         output_data.append(result)
 #         #print(result)
+
 
 # Record the end time
 end_time = time.perf_counter()
