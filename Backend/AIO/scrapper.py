@@ -113,7 +113,7 @@ def analyze_phishing_urls(input_file, output_file):
 
     # Process the rows in parallel using a ThreadPoolExecutor
     output_data = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=30) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=120) as executor:
         futures = [executor.submit(process_row, row) for _, row in df.iterrows()]
         for future in tqdm(concurrent.futures.as_completed(futures), total=len(futures)):
             result = future.result()

@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Define the line numbers to start and end the cut
-start_line = 20
-end_line = 30
+start_line = 40460
+end_line = 80923
 
 # Load the CSV file into a Pandas DataFrame
 df = pd.read_csv('online-valid-scrapped.csv')
