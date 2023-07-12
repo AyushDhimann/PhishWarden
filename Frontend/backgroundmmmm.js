@@ -57,7 +57,7 @@ chrome.tabs.query({active: true, currentWindow: true}, async function (tabs) {
             body: JSON.stringify(body) // pass encryptedUrl in the request body
         };
         console.log("options:", options);
-        const response = await fetch('http://139.59.26.201:4000/api', options);
+        const response = await fetch('http://139.59.81.140:4000/api', options);
         console.log("response:", response);
         // Parse the JSON response
         const responseData = await response.json();
